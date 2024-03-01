@@ -19,18 +19,20 @@ import express from "express";
 import { config } from "dotenv";
 import { connectToDb } from "./db/connection.js";
 
-config({path: `.env.${process.env.NODE_ENV}`})
+config({ path: `.env.${process.env.NODE_ENV}` });
 
 const app = express();
+
+app.get("/", (req, res) => res.end(`Hello from a  ${req.method} request`));
 
 try {
   console.log(`Connecting to MongoDB @ ${process.env.DB_URI}`);
   await connectToDb(process.env.DB_URI);
   console.log(`Connected to MongoDB @ ${process.env.DB_URI}`);
-}
-
-catch (err) {
+} catch (err) {
   console.error(err);
 }
 
-app.listen(4000, () => console.log("Server is running"))
+app.listen(process.env.PORT, () =>
+  console.log(`Server is running on: ${process.env.PORT}`)
+);
