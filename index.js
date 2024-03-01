@@ -1,38 +1,34 @@
-// import express from "express";
-// const app = express();
-
-// const PORT = 4000;
-
-// app.get("/", (req, res) => res.end(`Hello from a  ${req.method} request`));
-
-// app.post("/", (req, res) => res.end(`Hello from a  ${req.method} request`));
-
-// app.post("/add", (req, res) => res.end(`Hello from a  ${req.method} request to ${req.url}`));
-
-// const server = app.listen(PORT, () => {
-//   const SERVERHOST = server.address().address;
-//   const SERVERPORT = server.address().port;
-//   console.log(`Server listening on http://${SERVERHOST}:${SERVERPORT}`);
-// })
-
 import express from "express";
 import { config } from "dotenv";
+import cors from "cors";
 import { connectToDb } from "./db/connection.js";
+import { login } from "./routes/login.route.js";
 
 config({ path: `.env.${process.env.NODE_ENV}` });
 
 const app = express();
 
-app.get("/", (req, res) => res.end(`Hello from a  ${req.method} request`));
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
+// Enable cors from any location
+app.use(cors());
+// Define route handlers
+app.use("/login", login);
 
 try {
-  console.log(`Connecting to MongoDB @ ${process.env.DB_URI}`);
-  await connectToDb(process.env.DB_URI);
-  console.log(`Connected to MongoDB @ ${process.env.DB_URI}`);
+    console.log(`Connecting to DB @ ${process.env.DB_URI}`);
+    await connectToDb(process.env.DB_URI);
+    console.log(`Connected to DB @ ${process.env.DB_URI}`);
 } catch (err) {
-  console.error(err);
+    console.log(err);
 }
 
-app.listen(process.env.PORT, () =>
-  console.log(`Server is running on: ${process.env.PORT}`)
+const server = app.listen(process.env.PORT, () =>
+    console.log(
+        `Server is running on: ${server.address().address}:${
+            server.address().port
+        }`
+    )
 );
+
+export default server;

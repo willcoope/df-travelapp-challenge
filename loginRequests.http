@@ -1,0 +1,17 @@
+POST http://localhost:4000/login
+content-type: application/json
+
+{
+    "username": "no one known here",
+    "password": "not-found"
+}
+
+###
+
+POST http://localhost:4000/login
+content-type: application/json
+
+{
+    "username": "test1",
+    "password": "password1"
+}
