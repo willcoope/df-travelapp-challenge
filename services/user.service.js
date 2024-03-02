@@ -15,6 +15,21 @@ const login = async ({ username, password }) => {
     throw new Error();
 };
 
+const signup = async ({ username, password }) => {
+    // Check if username already exists
+    const user = await User.findOne({ username });
+    // If username already exists, error
+    if (user) {
+        throw new Error();
+    }
+    // If username doesn't exist, create a new user document
+    const newUser = new User({ username, password });
+    // Save the new user document to the database
+    await newUser.save();
+    // Return the new user document
+    return newUser;
+}
+
 export const userService = {
-    login,
+    login, signup
 };

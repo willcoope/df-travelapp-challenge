@@ -3,6 +3,7 @@ import { config } from "dotenv";
 import cors from "cors";
 import { connectToDb } from "./db/connection.js";
 import { login } from "./routes/login.route.js";
+import { signup } from "./routes/signup.route.js";
 
 config({ path: `.env.${process.env.NODE_ENV}` });
 
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(cors());
 // Define route handlers
 app.use("/login", login);
+app.use("/signup", signup);
 
 try {
     console.log(`Connecting to DB @ ${process.env.DB_URI}`);
