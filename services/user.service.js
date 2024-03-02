@@ -30,6 +30,18 @@ const signup = async ({ username, password }) => {
     return newUser;
 }
 
+const changepassword = async ({ username, oldpassword, newpassword }) => {
+    // Check if username already exists
+    const user = await User.findOne({ username });
+    if (user && oldpassword === user.password) {
+        user.password = newpassword;
+        await user.save();
+        return user;
+    }
+    throw new Error();
+} 
+
+
 export const userService = {
-    login, signup
+    login, signup, changepassword
 };

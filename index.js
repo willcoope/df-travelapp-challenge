@@ -4,6 +4,7 @@ import cors from "cors";
 import { connectToDb } from "./db/connection.js";
 import { login } from "./routes/login.route.js";
 import { signup } from "./routes/signup.route.js";
+import { changepassword } from "./routes/changepassword.route.js";
 
 config({ path: `.env.${process.env.NODE_ENV}` });
 
@@ -16,6 +17,7 @@ app.use(cors());
 // Define route handlers
 app.use("/login", login);
 app.use("/signup", signup);
+app.use("/changepassword", changepassword);
 
 try {
     console.log(`Connecting to DB @ ${process.env.DB_URI}`);
