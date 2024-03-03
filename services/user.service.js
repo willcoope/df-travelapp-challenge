@@ -31,7 +31,6 @@ const signup = async ({ username, password }) => {
 }
 
 const changepassword = async ({ username, oldpassword, newpassword }) => {
-    // Check if username already exists
     const user = await User.findOne({ username });
     if (user && oldpassword === user.password) {
         user.password = newpassword;
@@ -41,7 +40,43 @@ const changepassword = async ({ username, oldpassword, newpassword }) => {
     throw new Error();
 } 
 
+const getfavourites = async ({ username, password }) => {
+    const user = await User.findOne({ username });
+    if (user && password === user.password) {
+        return user.favourites;
+    }
+    throw new Error();
+}
+
+const addfavourite = async ({ username, password, newfavourite }) => {
+    console.log(username, password, newfavourite);
+    const user = await User.findOne({ username });
+    if (user && password === user.password) {
+        if (!user.favourites.includes(newfavourite) && newfavourite !== "") {
+            user.favourites.push(newfavourite);
+            await user.save();
+            return user;
+        }
+    }
+}
+
+const removefavourite = async ({ username, password, removefavourite }) => {
+    console.log(username, password, removefavourite);
+    const user = await User.findOne({ username });
+    if (user && password === user.password) {
+        if (user.favourites.includes(removefavourite)) {
+            user.favourites = user.favourites.filter(favourite => favourite !== removefavourite);
+            console.log(user.favourites);
+            await user.save();
+            console.log(user);
+            return user;
+        }
+        throw new Error();
+    }
+    throw new Error();
+}
+
 
 export const userService = {
-    login, signup, changepassword
+    login, signup, changepassword, getfavourites, addfavourite, removefavourite
 };

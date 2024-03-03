@@ -5,6 +5,9 @@ import { connectToDb } from "./db/connection.js";
 import { login } from "./routes/login.route.js";
 import { signup } from "./routes/signup.route.js";
 import { changepassword } from "./routes/changepassword.route.js";
+import { getfavourites } from "./routes/getfavourites.route.js";
+import { addfavourite } from "./routes/addfavourite.route.js";
+import { removefavourite } from "./routes/removefavourite.route.js";
 
 config({ path: `.env.${process.env.NODE_ENV}` });
 
@@ -18,6 +21,9 @@ app.use(cors());
 app.use("/login", login);
 app.use("/signup", signup);
 app.use("/changepassword", changepassword);
+app.use("/getfavourites", getfavourites);
+app.use("/addfavourite", addfavourite);
+app.use("/removefavourite", removefavourite);
 
 try {
     console.log(`Connecting to DB @ ${process.env.DB_URI}`);
