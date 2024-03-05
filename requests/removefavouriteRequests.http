@@ -6,3 +6,14 @@ content-type: application/json
     "password": "newpassword",
     "removefavourite": "newfavourite"
 }
+
+###
+
+PUT http://localhost:4000/removefavourite
+content-type: application/json
+
+{
+    "username": "test1",
+    "password": "newpassword",
+    "removefavourite": "notthere"
+}

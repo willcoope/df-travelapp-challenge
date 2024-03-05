@@ -55,7 +55,7 @@ const addfavourite = async ({ username, password, newfavourite }) => {
         if (!user.favourites.includes(newfavourite) && newfavourite !== "") {
             user.favourites.push(newfavourite);
             await user.save();
-            return user;
+            return user.favourites;
         }
     }
 }
