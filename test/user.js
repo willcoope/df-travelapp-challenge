@@ -33,6 +33,10 @@ describe(`Testing requests on the database`, () => {
             const res = await chai.request(server).post(`/signup`).send({ username: "test3", password: "password3"});
             expect(res).to.have.status(200);
         });
+        it(`invalid data should return an error`, async () => {
+            const res = await chai.request(server).post(`/signup`).send({ username: "test1", password: "password1"});
+            expect(res).to.have.status(400);
+        });
     });
 
     describe(`/POST login`, () => {
@@ -40,6 +44,10 @@ describe(`Testing requests on the database`, () => {
             const res = await chai.request(server).post(`/login`).send({ username: "test1", password: "password1"});
             expect(res).to.have.status(200);
             expect(res.body.message).to.equal(`Login Success`);
+        });
+        it(`invalid data should return an error`, async () => {
+            const res = await chai.request(server).post(`/login`).send({ username: "test1", password: "invalid"});
+            expect(res).to.have.status(400);
         });
     });
 
@@ -49,7 +57,12 @@ describe(`Testing requests on the database`, () => {
             expect(res).to.have.status(200);
             expect(res.body.favourites).to.include(`london`, `paris`, `berlin`);
         });
+        it(`invalid data should return an error`, async () => {
+            const res = await chai.request(server).get(`/getfavourites`).send({ username: "test1", password: "invalid"});
+            expect(res).to.have.status(400);
+        });
     });
+
     describe(`/PUT addfavourite`, () => {
         it(`valid data should add a favourite to the user's favourites`, async () => {
             const res = await chai.request(server).put(`/addfavourite`).send({ username: "test1", password: "password1", newfavourite: "madrid"});
@@ -61,6 +74,7 @@ describe(`Testing requests on the database`, () => {
             expect(res).to.have.status(400);
         });
     });
+
     describe(`/PUT removefavourite`, () => {
         it(`valid data should remove a favourite from the user's favourites`, async () => {
             const res = await chai.request(server).put(`/removefavourite`).send({ username: "test1", password: "password1", removefavourite: "london"});
