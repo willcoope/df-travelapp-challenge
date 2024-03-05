@@ -87,4 +87,15 @@ describe(`Testing requests on the database`, () => {
         });
     });
 
+    describe(`/PUT changepassword`, () => {
+        it(`valid data should change the user's password`, async () => {
+            const res = await chai.request(server).put(`/changepassword`).send({ username: "test1", oldpassword: "password1", newpassword: "newpassword"});
+            expect(res).to.have.status(200);
+        });
+        it(`invalid data should return an error`, async () => {
+            const res = await chai.request(server).put(`/changepassword`).send({ username: "test1", oldpassword: "invalid", newpassword: "newpassword"});
+            expect(res).to.have.status(400);
+        });
+    });
+
 });
