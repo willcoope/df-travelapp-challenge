@@ -28,26 +28,48 @@ describe(`Testing requests on the database`, () => {
             });
     });
 
+    describe('/POST signup', () => {
+        it(`valid data should register a new user`, async () => {
+            const res = await chai.request(server).post(`/signup`).send({ username: "test3", password: "password3"});
+            expect(res).to.have.status(200);
+        });
+    });
+
+    describe(`/POST login`, () => {
+        it(`valid data should login a user`, async () => {
+            const res = await chai.request(server).post(`/login`).send({ username: "test1", password: "password1"});
+            expect(res).to.have.status(200);
+            expect(res.body.message).to.equal(`Login Success`);
+        });
+    });
+
     describe(`/GET getfavourites`, () => {
-        it(`should return all of the favourites of a user`, async () => {
+        it(`valid data should return all of the favourites of a user`, async () => {
             const res = await chai.request(server).get(`/getfavourites`).send({ username: "test1", password: "password1"});
             expect(res).to.have.status(200);
             expect(res.body.favourites).to.include(`london`, `paris`, `berlin`);
         });
     });
     describe(`/PUT addfavourite`, () => {
-        it(`should add a favourite to the user's favourites`, async () => {
+        it(`valid data should add a favourite to the user's favourites`, async () => {
             const res = await chai.request(server).put(`/addfavourite`).send({ username: "test1", password: "password1", newfavourite: "madrid"});
             expect(res).to.have.status(200);
             expect(res.body.favourites).to.include(`london`, `paris`, `berlin`, `madrid`);
         });
+        it(`invalid data should return an error`, async () => {
+            const res = await chai.request(server).put(`/addfavourite`).send({ username: "test1", password: "password1", newfavourite: ""});
+            expect(res).to.have.status(400);
+        });
     });
     describe(`/PUT removefavourite`, () => {
-        it(`should remove a favourite from the user's favourites`, async () => {
+        it(`valid data should remove a favourite from the user's favourites`, async () => {
             const res = await chai.request(server).put(`/removefavourite`).send({ username: "test1", password: "password1", removefavourite: "london"});
             expect(res).to.have.status(200);
             expect(res.body.favourites).to.not.include(`london`);
-
+        });
+        it(`invalid data should return an error`, async () => {
+            const res = await chai.request(server).put(`/removefavourite`).send({ username: "test1", password: "password1", removefavourite: "invalid"});
+            expect(res).to.have.status(400);
         });
     });
 
