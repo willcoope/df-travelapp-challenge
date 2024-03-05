@@ -49,7 +49,6 @@ const getfavourites = async ({ username, password }) => {
 }
 
 const addfavourite = async ({ username, password, newfavourite }) => {
-    console.log(username, password, newfavourite);
     const user = await User.findOne({ username });
     if (user && password === user.password) {
         if (!user.favourites.includes(newfavourite) && newfavourite !== "") {
@@ -61,15 +60,12 @@ const addfavourite = async ({ username, password, newfavourite }) => {
 }
 
 const removefavourite = async ({ username, password, removefavourite }) => {
-    console.log(username, password, removefavourite);
     const user = await User.findOne({ username });
     if (user && password === user.password) {
         if (user.favourites.includes(removefavourite)) {
             user.favourites = user.favourites.filter(favourite => favourite !== removefavourite);
-            console.log(user.favourites);
             await user.save();
-            console.log(user);
-            return user;
+            return user.favourites;
         }
         throw new Error();
     }

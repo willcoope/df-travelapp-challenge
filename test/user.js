@@ -15,7 +15,6 @@ describe(`Testing requests on the database`, () => {
 
     beforeEach(async () => {
         await User.deleteMany()
-            .then(() => console.log(`Database cleared`))
             .catch(error => {
                 console.log(`Error clearing`);
                 throw new Error();
@@ -32,7 +31,6 @@ describe(`Testing requests on the database`, () => {
     describe(`/GET getfavourites`, () => {
         it(`should return all of the favourites of a user`, async () => {
             const res = await chai.request(server).get(`/getfavourites`).send({ username: "test1", password: "password1"});
-            console.log(res.body);
             expect(res).to.have.status(200);
             expect(res.body.favourites).to.include(`london`, `paris`, `berlin`);
         });
@@ -40,9 +38,16 @@ describe(`Testing requests on the database`, () => {
     describe(`/PUT addfavourite`, () => {
         it(`should add a favourite to the user's favourites`, async () => {
             const res = await chai.request(server).put(`/addfavourite`).send({ username: "test1", password: "password1", newfavourite: "madrid"});
-            console.log(res.body);
             expect(res).to.have.status(200);
             expect(res.body.favourites).to.include(`london`, `paris`, `berlin`, `madrid`);
+        });
+    });
+    describe(`/PUT removefavourite`, () => {
+        it(`should remove a favourite from the user's favourites`, async () => {
+            const res = await chai.request(server).put(`/removefavourite`).send({ username: "test1", password: "password1", removefavourite: "london"});
+            expect(res).to.have.status(200);
+            expect(res.body.favourites).to.not.include(`london`);
+
         });
     });
 
