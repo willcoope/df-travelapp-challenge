@@ -31,7 +31,7 @@ describe(`Testing requests on the database`, () => {
     describe('/POST signup', () => {
         it(`valid data should register a new user`, async () => {
             const res = await chai.request(server).post(`/signup`).send({ username: "test3", password: "password3"});
-            expect(res).to.have.status(200);
+            expect(res).to.have.status(201);
         });
         it(`invalid data should return an error`, async () => {
             const res = await chai.request(server).post(`/signup`).send({ username: "test1", password: "password1"});
