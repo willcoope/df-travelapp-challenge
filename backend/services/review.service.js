@@ -6,4 +6,8 @@ const addReview = async ({ username, location, rating, review }) => {
     return newReview;
 }
 
-export { addReview };
+const getReviews = async () => {
+    return await Review.find();
+}
+
+export const reviewService = { addReview, getReviews };

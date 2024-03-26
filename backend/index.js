@@ -9,6 +9,7 @@ import { getfavourites } from "./routes/getfavourites.route.js";
 import { addfavourite } from "./routes/addfavourite.route.js";
 import { removefavourite } from "./routes/removefavourite.route.js";
 import { addreview } from "./routes/addreview.route.js";
+import { getreviews } from "./routes/getreviews.route.js";
 
 config({ path: `.env.${process.env.NODE_ENV}` });
 
@@ -26,6 +27,7 @@ app.use("/getfavourites", getfavourites);
 app.use("/addfavourite", addfavourite);
 app.use("/removefavourite", removefavourite);
 app.use("/addreview", addreview);
+app.use("/getreviews", getreviews);
 
 try {
     console.log(`Connecting to DB @ ${process.env.DB_URI}`);
