@@ -90,15 +90,22 @@ const Header = () => {
                   navigate("/");
                 }}
               >
-                Logout
+                Log Out
               </button>
             </li>
           ) : (
+            <>
             <li className="nav-item">
               <button className="nav-link" onClick={() => navigate("/login")}>
                 Login
               </button>
             </li>
+            <li className="nav-item">
+            <button className="nav-link" onClick={() => navigate("/signup")}>
+              Sign Up
+            </button>
+          </li>
+          </>
           )}
         </ul>
         {currentLocation.pathname !== "/" && (

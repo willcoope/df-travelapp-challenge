@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import authService from "../../../services/auth.service";
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
+const SignupForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -12,8 +12,8 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await authService.login(username, password);
-      navigate("/favourites");
+      const response = await authService.signup(username, password);
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
@@ -29,7 +29,7 @@ const LoginForm = () => {
           textShadow: "-1px 0 white, 0 1px white, 1px 0 white, 0 -1px white",
         }}
       >
-        Login
+        Sign Up
       </h1>
       <input
         type="text"
@@ -49,4 +49,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;

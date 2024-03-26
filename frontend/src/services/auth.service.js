@@ -20,6 +20,24 @@ const login = async (username, password) => {
   }
 };
 
+const signup = async (username, password) => {
+  try {
+    const response = await axios.post(`${API_URL}/signup`, {
+      username,
+      password,
+    });
+    const data = await response.data;
+    console.log(data);
+    if (data.user) {
+      localStorage.setItem("user", JSON.stringify(data.user));
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const removeFavourite = async (username, password, removefavourite) => {
   try {
     const response = await axios.put(`${API_URL}/removefavourite`, {
@@ -36,7 +54,7 @@ const removeFavourite = async (username, password, removefavourite) => {
   }
 };
 
-const addFavourite = async (username, password, newfavourite) => {
+export const addFavourite = async (username, password, newfavourite) => {
   try {
     const response = await axios.put(`${API_URL}/addfavourite`, {
       username,
@@ -54,6 +72,7 @@ const addFavourite = async (username, password, newfavourite) => {
 
 const authService = {
   login,
+  signup,
   removeFavourite,
   addFavourite,
 };

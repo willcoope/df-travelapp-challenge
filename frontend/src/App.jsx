@@ -4,6 +4,7 @@ import Favourites from './components/pages/Favourites/Favourites';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import Login from './components/pages/Login/Login';
+import Signup from './components/pages/Signup/Signup';
 
 const App = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -14,6 +15,7 @@ const App = () => {
                 <Route exact path='/location/:locationName?' element={<Location searchTerm={searchTerm} />}/>
                 <Route exact path='/favourites' element={<Favourites />}/>
                 <Route path='/login' element={<Login/>}/>
+                <Route path='/signup' element={<Signup/>}/>
             </Routes>
         </BrowserRouter>
     )

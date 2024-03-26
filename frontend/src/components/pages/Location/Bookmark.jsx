@@ -4,6 +4,7 @@ import filledBookmark from "../../../images/filled_bookmark.png"
 import { useState, useEffect } from "react";
 import "../../Forecast.css";
 import authService from "../../../services/auth.service";
+// import { addFavourite as addFavouriteService} from "../../../services/auth.service";
 
 const Bookmark = ({ name, setRefresh }) => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -16,12 +17,12 @@ const Bookmark = ({ name, setRefresh }) => {
   const addFavourite = async () => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
-      const response = await authService.addFavourite(
+      // const response = await addFavouriteService(
+        const response = await authService.addFavourite(
         user.username,
         user.password,
         name.toLowerCase()
       );
-      console.log(response);
       user.favourites = response.favourites;
       localStorage.setItem("user", JSON.stringify(user));
       setIsBookmarked(true);
@@ -39,7 +40,6 @@ const Bookmark = ({ name, setRefresh }) => {
         user.password,
         name.toLowerCase()
       );
-      console.log(response);
       user.favourites = response.favourites;
       localStorage.setItem("user", JSON.stringify(user));
       setIsBookmarked(false);

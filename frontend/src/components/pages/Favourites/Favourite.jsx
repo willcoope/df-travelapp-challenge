@@ -15,7 +15,6 @@ const Favourite = ({ name, setRefresh }) => {
         user.password,
         name.toLowerCase()
       );
-      console.log(response);
       user.favourites = response.favourites;
       localStorage.setItem("user", JSON.stringify(user));
       setRefresh((prev) => !prev);
