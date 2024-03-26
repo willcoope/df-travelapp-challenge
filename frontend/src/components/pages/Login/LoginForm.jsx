@@ -45,7 +45,7 @@ const LoginForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      {error && <p>{error}</p>}
+      {error && <p>Invalid Details</p>}
       <button onClick={handleSubmit}>Login</button>
     </div>
   );

@@ -80,7 +80,7 @@ const Bookmark = ({ name, setRefresh }) => {
           alt="bookmark"
         />
       </button>
-      <h3>Click to add to toggle Favourite status</h3>
+      <h3>Click to toggle Favourite status</h3>
     </div>
   );
 };
