@@ -12,7 +12,7 @@ const SearchBar = () => {
   return (
     <div
       className="d-flex flex-column justify-content-center align-items-center"
-      style={{ height: "100vh", marginBottom: "60px" }}
+      style={{ height: "60vh", marginBottom: "60px" }}
     >
       <h1
         style={{

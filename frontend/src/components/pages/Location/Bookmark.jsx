@@ -13,7 +13,6 @@ const Bookmark = ({ name, setRefresh }) => {
   name = name.replace(/%20(\w)/g, function (_, c) {
     return " " + c.toUpperCase();
   });
-  console.log(isBookmarked)
   const addFavourite = async () => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
