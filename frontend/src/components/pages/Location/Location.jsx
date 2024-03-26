@@ -54,7 +54,7 @@ const Location = () => {
       <LocationTitle location={locationUrl} />
       {loggedIn && <Bookmark name={locationUrl} setRefresh={setRefresh} />}
       <Weather weatherData={weatherData} />
-      {/* <Map long={weatherData.city.coord.lon} lat={weatherData.city.coord.lat}/> */}
+      <Map long={weatherData.city.coord.lon} lat={weatherData.city.coord.lat}/>
       <ReviewForm location={locationUrl} setRefresh={setRefresh} />
       <ReviewsGrid location={locationUrl} setRefresh={setRefresh} />
       <Footer />
