@@ -5,19 +5,20 @@ import "./Forecast.css";
 
 const FavouritesGrid = () => {
   const [refresh, setRefresh] = useState(false);
-  let bookmarks = localStorage.getItem("favouriteLocations");
-  bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
+  let user = localStorage.getItem("user");
+  user = user ? JSON.parse(user) : {};
+  let bookmarks = user.favourites || [];
 
   const toTitleCase = (str) => {
-    return str.replace(/\w\S*/g, function(txt){
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    return str.replace(/\w\S*/g, function (txt) {
+      return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
-  }
+  };
 
   return (
     <div className="favourites-grid white-outline">
       {bookmarks.map((bookmark, index) => (
-        <Favourite name={toTitleCase(bookmark)} setRefresh={setRefresh} />
+        <Favourite key={index} name={toTitleCase(bookmark)} setRefresh={setRefresh} />
       ))}
     </div>
   );

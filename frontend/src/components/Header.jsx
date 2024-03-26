@@ -17,10 +17,11 @@ const Header = () => {
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
-  const hasFavourites = localStorage.getItem("favouriteLocations") != "[]";
-  let bookmarks = localStorage.getItem("favouriteLocations");
-  bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
-
+  let user = localStorage.getItem("user");
+  const loggedIn = (user !== null)
+  user = user ? JSON.parse(user) : {};
+  const hasFavourites = user.favourites != "[]";
+  let bookmarks = user.favourites || [];
   const toTitleCase = (str) => {
     return str.replace(/\w\S*/g, function(txt){
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -78,6 +79,25 @@ const Header = () => {
                 )}
                 <h6 onClick={() => navigate("/favourites")}>View All</h6>
               </div>
+            </li>
+          )}
+          {!loggedIn ? (
+            <li className="nav-item">
+              <button
+                className="nav-link"
+                onClick={() => {
+                  localStorage.removeItem("user");
+                  navigate("/login");
+                }}
+              >
+                Logout
+              </button>
+            </li>
+          ) : (
+            <li className="nav-item">
+              <button className="nav-link" onClick={() => navigate("/login")}>
+                Login
+              </button>
             </li>
           )}
         </ul>

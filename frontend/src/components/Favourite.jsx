@@ -1,20 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import filledBookmark from "../images/filled_bookmark.png";
-
+import authService from "../services/auth.service";
 const Favourite = ({ name, setRefresh }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/location/${name.toLowerCase()}`);
   };
-  const handleRemove = () => {
-    let bookmarks = localStorage.getItem("favouriteLocations");
-    bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
-    const index = bookmarks.indexOf(name.toLowerCase());
-    if (index !== -1) {
-      bookmarks.splice(index, 1);
+  const handleRemove = async (e) => {
+    e.preventDefault();
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const response = await authService.removeFavourite(
+        user.username,
+        user.password,
+        name.toLowerCase()
+      );
+      console.log(response);
+      user.favourites = response.favourites;
+      localStorage.setItem("user", JSON.stringify(user));
+      setRefresh((prev) => !prev);
+    } catch (error) {
+      console.log(error);
     }
-    localStorage.setItem("favouriteLocations", JSON.stringify(bookmarks));
-    setRefresh((prev) => !prev);
   };
   name = name[0].toUpperCase() + name.slice(1);
   name = name.replace(/%20(\w)/g, function (_, c) {
