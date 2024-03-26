@@ -9,6 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Location = () => {
+  const [refresh, setRefresh] = useState(false);
   const [weatherData, setWeatherData] = useState([]);
   const locationUrl = useLocation().pathname.slice(10).toLowerCase();
   let user = localStorage.getItem("user");
@@ -46,7 +47,7 @@ const Location = () => {
     <div>
       <Header />
       <Background />
-      {loggedIn && <Bookmark name={locationUrl} />}
+      {loggedIn && <Bookmark name={locationUrl} setRefresh={setRefresh} />}
       <Weather weatherData={weatherData} />
       <Footer />
     </div>

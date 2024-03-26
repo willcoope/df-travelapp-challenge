@@ -19,7 +19,6 @@ const Header = () => {
   };
   let user = localStorage.getItem("user");
   const loggedIn = (user !== null)
-  console.log(loggedIn)
   user = user ? JSON.parse(user) : {};
   const hasFavourites = user.favourites != "[]";
   let bookmarks = user.favourites || [];
@@ -82,7 +81,6 @@ const Header = () => {
               </div>
             </li>
           )}
-          {console.log(loggedIn)}
           {loggedIn ? (
             <li className="nav-item">
               <button

@@ -3,8 +3,9 @@ import emptyBookmark from "../images/empty_bookmark.png";
 import filledBookmark from "../images/filled_bookmark.png";
 import { useState, useEffect } from "react";
 import "./Forecast.css";
+import authService from "../services/auth.service";
 
-const Bookmark = ({ name }) => {
+const Bookmark = ({ name, setRefresh }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [isBookmarked, setIsBookmarked] = user ?
   useState(user.favourites.includes(name.toLowerCase())) : useState(false);
@@ -12,16 +13,48 @@ const Bookmark = ({ name }) => {
   name = name.replace(/%20(\w)/g, function (_, c) {
     return " " + c.toUpperCase();
   });
-  const saveToLocalStorage = () => {
-    let bookmarks = localStorage.getItem("favouriteLocations");
-    bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
-    const lowerCaseName = name.toLowerCase();
-    if (!bookmarks.includes(lowerCaseName.replace(/\s/g, '%20'))) {
-      bookmarks.push(lowerCaseName);
-      localStorage.setItem("favouriteLocations", JSON.stringify(bookmarks));
+  console.log(isBookmarked)
+  const addFavourite = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const response = await authService.addFavourite(
+        user.username,
+        user.password,
+        name.toLowerCase()
+      );
+      console.log(response);
+      user.favourites = response.favourites;
+      localStorage.setItem("user", JSON.stringify(user));
+      setIsBookmarked(true);
+      setRefresh((prev) => !prev);
     }
-    setIsBookmarked(true);
+    catch (error) {
+      console.log(error);
+    }
   };
+  const removeFavourite = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const response = await authService.removeFavourite(
+        user.username,
+        user.password,
+        name.toLowerCase()
+      );
+      console.log(response);
+      user.favourites = response.favourites;
+      localStorage.setItem("user", JSON.stringify(user));
+      setIsBookmarked(false);
+      setRefresh((prev) => !prev);
+    } catch (error) {
+      console.log(error);
+  }
+};
+  const toggleFavourite = async (e) => {
+    e.preventDefault();
+    const user = JSON.parse(localStorage.getItem("user"));
+    isBookmarked ? removeFavourite() : addFavourite();
+  }
+
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user) return;
@@ -40,14 +73,14 @@ const Bookmark = ({ name }) => {
           outline: "none",
           backgroundColor: "transparent",
         }}
-        onClick={saveToLocalStorage}
+        onClick={toggleFavourite}
       >
         <img
           src={isBookmarked ? filledBookmark : emptyBookmark}
           alt="bookmark"
         />
       </button>
-      <h3>Click to add to Favourites</h3>
+      <h3>Click to add to toggle Favourite status</h3>
     </div>
   );
 };

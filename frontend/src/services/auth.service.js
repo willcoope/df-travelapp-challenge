@@ -36,9 +36,26 @@ const removeFavourite = async (username, password, removefavourite) => {
   }
 };
 
+const addFavourite = async (username, password, newfavourite) => {
+  try {
+    const response = await axios.put(`${API_URL}/addfavourite`, {
+      username,
+      password,
+      newfavourite,
+    });
+    const data = await response.data;
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const authService = {
   login,
   removeFavourite,
+  addFavourite,
 };
 
 export default authService;
