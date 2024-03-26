@@ -24,7 +24,7 @@ const mapElement = useRef();
     return (
         <>
 
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '30vh', marginTop:'20vh', marginBottom:'30vh' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '30vh', marginTop:'20vh', marginBottom:'25vh' }}>
             <div
                 ref={mapElement}
                 style={{ height: "70vh", width:"70vw" }}
