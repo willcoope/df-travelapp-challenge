@@ -3,18 +3,6 @@ import Forecast from '../src/components/pages/Location/Forecast';
 import { test } from 'vitest'
 
 test('renders the forecast', () => {
-    // const weather = {
-    //     dt_txt: '2021-08-12 12:00:00',
-    //     main: {
-    //         temp: 80
-    //     },
-    //     weather: [
-    //         {
-    //             icon: '01d',
-    //             description: 'clear sky'
-    //         }
-    //     ]
-    // }
     const weather = {
         date: '2021-08-12 12:00:00',
         temp: 80,

@@ -54,7 +54,7 @@ const removeFavourite = async (username, password, removefavourite) => {
   }
 };
 
-export const addFavourite = async (username, password, newfavourite) => {
+const addFavourite = async (username, password, newfavourite) => {
   try {
     const response = await axios.put(`${API_URL}/addfavourite`, {
       username,
