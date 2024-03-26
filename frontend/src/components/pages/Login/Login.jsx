@@ -10,7 +10,6 @@ const Login = () => {
     <div>
       <Header />
       <Background />
-      <h1>Login</h1>
       <LoginForm />
       <Footer />
     </div>

@@ -1,5 +1,3 @@
-import'./App.css';
-
 import Homepage from './components/pages/Homepage/Homepage';
 import Location from './components/pages/Location/Location';
 import Favourites from './components/pages/Favourites/Favourites';
