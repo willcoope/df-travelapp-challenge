@@ -3,6 +3,7 @@ import Footer from "../../Footer";
 import Header from "../../Header";
 import Bookmark from "./Bookmark";
 import Weather from "./Weather";
+import Map from "./Map";
 
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -49,6 +50,7 @@ const Location = () => {
       <Background />
       {loggedIn && <Bookmark name={locationUrl} setRefresh={setRefresh} />}
       <Weather weatherData={weatherData} />
+      <Map long={weatherData.city.coord.lon} lat={weatherData.city.coord.lat}/>
       <Footer />
     </div>
   );

@@ -2,6 +2,7 @@ import CurrentForecast from "./CurrentForecast";
 import ForecastGrid from "./ForecastGrid";
 
 const Weather = (props) => {
+  console.log(props.weatherData);
   const data = props.weatherData;
   const getDayIndices = (data) => {
     let dayIndices = [];
