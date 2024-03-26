@@ -5,15 +5,9 @@ import { useState, useEffect } from "react";
 import "./Forecast.css";
 
 const Bookmark = ({ name }) => {
-  const [isBookmarked, setIsBookmarked] = localStorage.getItem(
-    "favouriteLocations"
-  )
-    ? useState(
-        JSON.parse(localStorage.getItem("favouriteLocations")).includes(
-          name.toLowerCase()
-        )
-      )
-    : useState(false);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const [isBookmarked, setIsBookmarked] = user ?
+  useState(user.favourites.includes(name.toLowerCase())) : useState(false);
   name = name[0].toUpperCase() + name.slice(1);
   name = name.replace(/%20(\w)/g, function (_, c) {
     return " " + c.toUpperCase();
@@ -29,8 +23,9 @@ const Bookmark = ({ name }) => {
     setIsBookmarked(true);
   };
   useEffect(() => {
-    let bookmarks = localStorage.getItem("favouriteLocations");
-    bookmarks = bookmarks ? JSON.parse(bookmarks) : [];
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) return;
+    let bookmarks = user.favourites;
     const lowerCaseName = name.toLowerCase();
     setIsBookmarked(bookmarks.includes(lowerCaseName));
   }, [name]);

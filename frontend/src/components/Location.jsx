@@ -11,7 +11,8 @@ import { useEffect, useState } from "react";
 const Location = () => {
   const [weatherData, setWeatherData] = useState([]);
   const locationUrl = useLocation().pathname.slice(10).toLowerCase();
-
+  let user = localStorage.getItem("user");
+  const loggedIn = (user !== null)
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,7 +46,7 @@ const Location = () => {
     <div>
       <Header />
       <Background />
-      <Bookmark name={locationUrl} />
+      {loggedIn && <Bookmark name={locationUrl} />}
       <Weather weatherData={weatherData} />
       <Footer />
     </div>
