@@ -9,6 +9,7 @@ import ReviewsGrid from "./ReviewsGrid";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import LocationTitle from "./LocationTitle";
 
 const Location = () => {
   const [refresh, setRefresh] = useState(false);
@@ -49,9 +50,10 @@ const Location = () => {
     <div>
       <Header />
       <Background />
+      <LocationTitle location={locationUrl} />
       {loggedIn && <Bookmark name={locationUrl} setRefresh={setRefresh} />}
       <Weather weatherData={weatherData} />
-      <Map long={weatherData.city.coord.lon} lat={weatherData.city.coord.lat}/>
+      {/* <Map long={weatherData.city.coord.lon} lat={weatherData.city.coord.lat}/> */}
       <ReviewsGrid location={locationUrl} setRefresh={setRefresh} />
       {/* <Footer /> */}
     </div>

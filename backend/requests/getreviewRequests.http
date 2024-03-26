@@ -1,6 +1,10 @@
-GET http://localhost:4000/getreviews
+POST http://localhost:4000/getreviews
 Content-Type: application/json
 
 {
     "location": "paris"
 }
+
+###
+
+POST http://localhost:4000/getreviews

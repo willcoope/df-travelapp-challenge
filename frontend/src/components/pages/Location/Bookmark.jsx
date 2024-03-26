@@ -64,8 +64,6 @@ const Bookmark = ({ name, setRefresh }) => {
 
   return (
     <div className="d-flex flex-column justify-content-center align-items-center white-outline">
-      <h1>Telling You About</h1>
-      <h2>{name}</h2>
       <button
         style={{
           border: "none",

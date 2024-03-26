@@ -1,0 +1,9 @@
+.review-box {
+    background-color: lightgrey;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 90%;
+    height: auto; 
+    word-wrap: break-word;
+  }
