@@ -4,6 +4,7 @@ import Header from "../../Header";
 import Bookmark from "./Bookmark";
 import Weather from "./Weather";
 import Map from "./Map";
+import ReviewsGrid from "./ReviewsGrid";
 
 import { useLocation } from "react-router-dom";
 import axios from "axios";
@@ -51,7 +52,8 @@ const Location = () => {
       {loggedIn && <Bookmark name={locationUrl} setRefresh={setRefresh} />}
       <Weather weatherData={weatherData} />
       <Map long={weatherData.city.coord.lon} lat={weatherData.city.coord.lat}/>
-      <Footer />
+      <ReviewsGrid location={locationUrl} setRefresh={setRefresh} />
+      {/* <Footer /> */}
     </div>
   );
 };

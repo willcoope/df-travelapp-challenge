@@ -1,13 +1,13 @@
 import Review from "../models/review.model.js";
 
-const addReview = async ({ username, location, rating, review }) => {
+const addreview = async ({ username, location, rating, review }) => {
     const newReview = new Review({ username, location, rating, review });
     await newReview.save();
     return newReview;
 }
 
-const getReviews = async () => {
-    return await Review.find();
+const getreviews = async ({location}) => {
+    return await Review.find({ location });
 }
 
-export const reviewService = { addReview, getReviews };
+export const reviewService = { addreview, getreviews };
