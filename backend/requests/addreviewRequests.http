@@ -1,0 +1,9 @@
+POST http://localhost:4000/addreview
+content-type: application/json
+
+{
+    "review": "This is a review",
+    "rating": 5,
+    "location": "london",
+    "username": "test1"
+}
