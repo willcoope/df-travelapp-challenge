@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import emptyBookmark from "../images/empty_bookmark.png";
-import filledBookmark from "../images/filled_bookmark.png";
+import emptyBookmark from "../../../images/empty_bookmark.png";
+import filledBookmark from "../../../images/filled_bookmark.png"
 import { useState, useEffect } from "react";
-import "./Forecast.css";
-import authService from "../services/auth.service";
+import "../../Forecast.css";
+import authService from "../../../services/auth.service";
 
 const Bookmark = ({ name, setRefresh }) => {
   const user = JSON.parse(localStorage.getItem("user"));

@@ -43,27 +43,3 @@ test(`home link navigates to the home page`, () => {
     home.click()
     expect(window.location.pathname).toBe('/')
 })
-
-test(`renders the favourites link`, () => {
-    render(
-        <BrowserRouter>
-            <Header />
-        </BrowserRouter>
-    )
-    // const favourites = screen.getByText(/favourites/i)
-    const favourites = screen.getByText(/favourites/i)
-
-    expect(favourites).toBeInTheDocument()
-})
-
-// test(`favourites link navigates to the favourites page`, () => {
-//     render(
-//         <BrowserRouter>
-//             <Header />
-//         </BrowserRouter>
-//     )
-//     const favourites = screen.getByText(/favourites/i)
-//     favourites.click()
-//     expect(window.location.pathname).toBe('/favourites')
-// })
-

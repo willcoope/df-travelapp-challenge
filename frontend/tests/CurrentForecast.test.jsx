@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import CurrentForecast from '../src/components/CurrentForecast'
-
+// import CurrentForecast from '../src/components/CurrentForecast'
+import CurrentForecast from '../src/components/pages/Location/CurrentForecast';
 test('renders the current forecast', () => {
     // const currentWeather = {
     //     dt_txt: '2021-08-12 12:00:00',

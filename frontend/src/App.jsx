@@ -1,11 +1,11 @@
 import'./App.css';
 
-import Homepage from './components/Homepage';
-import Location from './components/Location';
-import Favourites from './components/Favourites';
+import Homepage from './components/pages/Homepage/Homepage';
+import Location from './components/pages/Location/Location';
+import Favourites from './components/pages/Favourites/Favourites';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-import Login from './components/Login';
+import Login from './components/pages/Login/Login';
 
 const App = () => {
     const [searchTerm, setSearchTerm] = useState('');

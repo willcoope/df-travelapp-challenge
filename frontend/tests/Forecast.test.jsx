@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import Forecast from '../src/components/Forecast'
+import Forecast from '../src/components/pages/Location/Forecast';
 import { test } from 'vitest'
 
 test('renders the forecast', () => {

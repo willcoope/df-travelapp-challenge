@@ -1,4 +1,4 @@
-import "./Forecast.css";
+import "../../Forecast.css";
 
 const CurrentForecast = (props) => {
   const icon_string =

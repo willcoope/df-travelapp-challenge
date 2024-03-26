@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import authService from '../services/auth.service';
+import authService from '../../../services/auth.service';
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {

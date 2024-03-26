@@ -1,7 +1,7 @@
 import Favourite from "./Favourite";
 import "./FavouritesGrid.css";
 import { useState } from "react";
-import "./Forecast.css";
+import "../../Forecast.css";
 
 const FavouritesGrid = () => {
   const [refresh, setRefresh] = useState(false);

@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom'
-import FavouritesGrid from '../src/components/FavouritesGrid'
+import FavouritesGrid from '../src/components/pages/Favourites/FavouritesGrid';
 
 test('renders the favourites', () => {
-    localStorage.setItem('favouriteLocations', JSON.stringify(['london', 'paris']))
+    localStorage.setItem('user', JSON.stringify({"_id": "1", "username": "test", "password":"password", "favourites": ["london", "paris"]}));
     render(
         <BrowserRouter>
             <FavouritesGrid />

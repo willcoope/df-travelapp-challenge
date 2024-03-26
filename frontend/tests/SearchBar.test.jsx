@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react'
-import SearchBar from '../src/components/SearchBar';
+// import SearchBar from '../src/components/SearchBar';
+import SearchBar from '../src/components/pages/Homepage/SearchBar'
 import { BrowserRouter } from 'react-router-dom';
 import { fireEvent } from '@testing-library/dom';
+
 
 test('renders the search bar', () => {
     render(<BrowserRouter>

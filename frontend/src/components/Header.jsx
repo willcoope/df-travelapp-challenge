@@ -87,7 +87,7 @@ const Header = () => {
                 className="nav-link"
                 onClick={() => {
                   localStorage.removeItem("user");
-                  navigate("/login");
+                  navigate("/");
                 }}
               >
                 Logout

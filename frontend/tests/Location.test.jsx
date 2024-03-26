@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Location from '../src/components/Location';
+import Location from '../src/components/pages/Location/Location';
 import { BrowserRouter } from 'react-router-dom';
 import { test } from 'vitest';
 

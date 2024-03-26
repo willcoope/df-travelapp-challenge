@@ -1,6 +1,6 @@
-import Background from "./Background";
-import Footer from "./Footer";
-import Header from "./Header";
+import Background from "../../Background";
+import Footer from "../../Footer";
+import Header from "../../Header";
 import Bookmark from "./Bookmark";
 import Weather from "./Weather";
 

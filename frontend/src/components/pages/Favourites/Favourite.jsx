@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import filledBookmark from "../images/filled_bookmark.png";
-import authService from "../services/auth.service";
+import filledBookmark from "../../../images/filled_bookmark.png";
+import authService from "../../../services/auth.service";
 const Favourite = ({ name, setRefresh }) => {
   const navigate = useNavigate();
   const handleClick = () => {
