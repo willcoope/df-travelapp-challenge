@@ -25,3 +25,23 @@ content-type: application/json
     "username": "test999",
     "password": "password999"
 }
+
+###
+
+POST http://localhost:4000/signup
+content-type: application/json
+
+{
+    "username": "willcooper",
+    "password": "password"
+}
+
+###
+
+POST http://localhost:4000/signup
+content-type: application/json
+
+{
+    "username": "johndoe",
+    "password": "password"
+}

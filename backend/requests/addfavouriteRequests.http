@@ -6,3 +6,26 @@ content-type: application/json
     "password": "newpassword",
     "newfavourite": "newnewfavourite"
 }
+
+###
+
+PUT http://localhost:4000/addfavourite
+content-type: application/json
+
+{
+    "username": "willcooper",
+    "password": "password",
+    "newfavourite": "brussels"
+}
+
+###
+
+PUT http://localhost:4000/addfavourite
+content-type: application/json
+
+{
+    "username": "johndoe",
+    "password": "password",
+    "newfavourite": "rome"
+}
+

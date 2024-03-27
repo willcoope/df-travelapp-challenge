@@ -22,6 +22,7 @@ const ReviewForm = ({ location }) => {
         rating
       );
       console.log(response);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
