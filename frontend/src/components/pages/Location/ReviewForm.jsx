@@ -9,11 +9,6 @@ const ReviewForm = ({ location }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log("Location: ", location);
-    console.log("User: ", localStorage.getItem("user"));
-    console.log(user.username);
-    console.log("Rating: ", rating);
-    console.log("Review: ", review);
     try {
       const response = await reviewService.addReview(
         user.username,
