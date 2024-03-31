@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import filledBookmark from "../../../images/filled_bookmark.png";
 import authService from "../../../services/auth.service";
+import "./Favourite.css";
 const Favourite = ({ name, setRefresh }) => {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -28,10 +29,17 @@ const Favourite = ({ name, setRefresh }) => {
   });
   return (
     <div className="favourite">
-      <button onClick={handleRemove}>
-        <img src={filledBookmark} alt="bookmark" />
-      </button>
       <h4 onClick={handleClick}>{name}</h4>
+      <div className="button-container">
+        <button onClick={handleRemove}>
+          Remove
+          {/* <img src={filledBookmark} alt="bookmark" /> */}
+        </button>
+        <button onClick={handleClick}>
+          View
+          {/* <img src={filledBookmark} alt="bookmark" /> */}
+        </button>
+      </div>
     </div>
   );
 };

@@ -12,7 +12,6 @@ const ReviewsGrid = ({ location }) => {
         };
         fetchReviews();
       }, [location]);
-    console.log(fetchedReviews);
     return(
       <div className="white-outline" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '50px' }}>
       {fetchedReviews.length === 0 && <h1>No reviews yet!</h1>}
