@@ -44,7 +44,7 @@ const SignupForm = () => {
         onChange={(e) => setPassword(e.target.value)}
       />
       {error && <p>Invalid Details</p>}
-      <button onClick={handleSubmit}>Login</button>
+      <button onClick={handleSubmit}>Signup</button>
     </div>
   );
 };

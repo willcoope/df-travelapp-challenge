@@ -52,7 +52,7 @@ test('should call the removeFavourite function when the button is clicked', asyn
             <Favourite name="london" setRefresh={vi.fn()} />
         </BrowserRouter>
     );
-    const button = screen.getByRole("button");
+    const button = screen.getByText(/Remove/i);
     await userEvent.click(button);
     expect(authService.removeFavourite).toHaveBeenCalledWith(
         userItem.username,
