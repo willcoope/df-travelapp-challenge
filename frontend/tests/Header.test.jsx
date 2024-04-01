@@ -43,3 +43,78 @@ test(`home link navigates to the home page`, () => {
     home.click()
     expect(window.location.pathname).toBe('/')
 })
+
+test('doesn\'t render the favourites link when not logged in', () => {
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const favourites = screen.queryByText(/favourites/i)
+    expect(favourites).not.toBeInTheDocument()
+})
+
+test(`renders the login link when not logged in`, () => {
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const login = screen.getByText(/login/i)
+    expect(login).toBeInTheDocument()
+})
+
+test(`login link navigates to the login page`, () => {
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const login = screen.getByText(/login/i)
+    login.click()
+    expect(window.location.pathname).toBe('/login')
+})
+
+test(`renders the signup link when not logged in`, () => {
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const signup = screen.getByText(/sign up/i)
+    expect(signup).toBeInTheDocument()
+})
+
+test(`signup link navigates to the signup page`, () => {
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const signup = screen.getByText(/sign up/i)
+    signup.click()
+    expect(window.location.pathname).toBe('/signup')
+})
+
+test('renders the favourites link when logged in', () => {
+    localStorage.setItem('user', JSON.stringify({ username: 'test' }))
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const favourites = screen.getByText(/favourites/i)
+    expect(favourites).toBeInTheDocument()
+})
+
+test('renders the logout link when logged in', () => {
+    localStorage.setItem('user', JSON.stringify({ username: 'test' }))
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const logout = screen.getByText(/log out/i)
+    expect(logout).toBeInTheDocument()
+})
+

@@ -15,6 +15,7 @@ const ReviewsGrid = ({ location }) => {
     return(
       <div className="white-outline" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '50px' }}>
       {fetchedReviews.length === 0 && <h1>No reviews yet!</h1>}
+      {fetchedReviews.length > 0 && <h1>Reviews</h1>}
         {fetchedReviews.map((review, index) => (
           <Review key={index} review={review} />
       ))}
