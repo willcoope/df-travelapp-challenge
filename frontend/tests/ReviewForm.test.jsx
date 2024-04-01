@@ -20,3 +20,28 @@ test("renders the review form", () => {
     const review = screen.getByRole("button");
     expect(review).toBeInTheDocument();
 });
+
+test("submits a review", async () => {
+    localStorage.setItem('user', JSON.stringify({ username: 'test' }))
+    reviewService.addReview.mockResolvedValue({
+        review: {
+            _id: "1",
+            username: "test",
+            location: "test",
+            review: "Great place!",
+            rating: "5",
+        },
+    });
+    render(
+        <BrowserRouter>
+            <ReviewForm location="test" />
+        </BrowserRouter>
+    );
+    const rating = screen.getByRole("combobox");
+    const review = screen.getByRole("textbox");
+    const submit = screen.getByRole("button");
+    await userEvent.selectOptions(rating, "5");
+    await userEvent.type(review, "Great place!");
+    await userEvent.click(submit);
+    expect(reviewService.addReview).toHaveBeenCalled();
+});

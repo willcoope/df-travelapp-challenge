@@ -118,3 +118,41 @@ test('renders the logout link when logged in', () => {
     expect(logout).toBeInTheDocument()
 })
 
+test('logout link logs out the user', () => {
+    localStorage.setItem('user', JSON.stringify({ username: 'test' }))
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const logout = screen.getByText(/log out/i)
+    logout.click()
+    expect(localStorage.getItem('user')).toBe(null)
+})
+
+test('clicking favourites then view all navigates to the favourites page', () => {
+    localStorage.setItem('user', JSON.stringify({ username: 'test' }))
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const favourites = screen.getByText(/favourites/i)
+    favourites.click()
+    const viewAll = screen.getByText(/view all/i)
+    viewAll.click()
+    expect(window.location.pathname).toBe('/favourites')
+})
+
+test('clicking favourites renders a dropdown containing the user\'s favourite locations', () => {
+    localStorage.setItem('user', JSON.stringify({ username: 'test', favourites: ['test'] }))
+    render(
+        <BrowserRouter>
+            <Header />
+        </BrowserRouter>
+    )
+    const favourites = screen.getByText(/favourites/i)
+    favourites.click()
+    const location = screen.getByText(/test/i)
+    expect(location).toBeInTheDocument()
+})
