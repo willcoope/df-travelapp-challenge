@@ -5,7 +5,7 @@ import Bookmark from "./Bookmark";
 import Weather from "./Weather";
 import Map from "./Map";
 import ReviewsGrid from "./ReviewsGrid";
-
+import "../../Forecast.css";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -38,7 +38,7 @@ const Location = () => {
         <Header />
         <Background />
         <h1
-          className="d-flex flex-column justify-content-center align-items-center"
+          className="white-outline d-flex flex-column justify-content-center align-items-center"
           style={{ height: "75vh", marginBottom: "60px" }}
         >
           City Not Found
